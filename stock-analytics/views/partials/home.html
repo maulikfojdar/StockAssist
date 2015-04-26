@@ -1,0 +1,145 @@
+<div ng-include="'partials/navbar.html'"></div>
+
+<div class="container">
+
+    <div class="row">
+     	<div class="col-md-3" id="sidebar" ng-controller="SideCtrl">
+     		<div class="panel panel-primary">
+     			<div class="panel-heading">Stock Quotes
+     			</div> 
+     			<ul class="list-group" ng-repeat="stock in stockList">
+     			  	<li ng-click="stockInfo($index)" class="list-group-item">
+     			  		<span class="stockSymbol">
+     			  			{{stock.symbol}}
+     			  		</span>
+     			  		<span ng-show="stock.net_sentiment >= 0" class="posSentiment rAlign">
+     			  			{{stock.net_sentiment*100 | number: 2}}%&nbsp; <i class="fa fa-caret-up"></i>
+     			  		</span>
+     			  		
+     			  		<span ng-show="stock.net_sentiment < 0" class="negSentiment rAlign">
+     			  			{{stock.net_sentiment*100 | number: 2}}%&nbsp; <i class="fa fa-caret-down"></i>
+     			  		</span>
+						
+
+
+     			   	<br/><small>{{stock.name}}</small></li>
+     			</ul>
+     		</div>
+     	</div>
+
+     	<div class="col-md-9" ng-controller="StockCtrl">
+     	<h1 style="font-weight:bold;"><i class="fa fa-building "></i> {{company}}</h1>
+			<div class="row">
+				<div ng-show="sentiment" class="col-md-4">
+					<div ng-show="sentiment >= 0" class="panel panel-success">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-smile-o fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">{{sentiment | number: 1}}%</div>
+									<div class="name">Sentiment</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-show="sentiment < 0" class="panel panel-danger">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-frown-o fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">{{sentiment | number: 1}}%</div>
+									<div class="name">Sentiment</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-show="currentStock" class="col-md-4">
+					<div ng-show="sentiment >= 0" class="panel panel-success">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-area-chart fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">${{currentStock | number: 3}}</div>
+									<div class="name">Current Price</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-show="sentiment < 0" class="panel panel-danger">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-area-chart fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">${{currentStock | number: 3}}</div>
+									<div class="name">Current Price</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-show="predictedStock" class="col-md-4">
+					<div ng-show="sentiment >= 0" class="panel panel-success">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-line-chart fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">${{predictedStock | number: 3}}</div>
+									<div class="name">Prediction</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-show="sentiment < 0" class="panel panel-danger">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-3"><i class="fa fa-line-chart fa-5x"></i></div>
+								<div class="col-md-9 text-right">
+									<div class="huge">${{predictedStock | number: 3}}</div>
+									<div class="name">Prediction</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>Trending Tweets</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i ng-click="toggleBox()" ng-hide="tweetBox" class="fa fa-chevron-up"></i>
+                                            <i ng-click="toggleBox()" ng-show="tweetBox" class="fa fa-chevron-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content no-padding" ng-hide="tweetBox">
+                                    <ul class="list-group" ng-repeat="topTweet in topTweets">
+                                        <li class="list-group-item">
+                                            <p>
+                                            <a class="text-info" target="_blank" ng-href="https://twitter.com/{{topTweet.screen_name}}">
+                                            	@{{topTweet.screen_name}}
+                                            </a> 
+                                            <div ng-show="topTweet.sentiment == 'positive'" class="posSentiment">{{topTweet.text}}</div>
+     										<div ng-show="topTweet.sentiment == 'negative'" class="negSentiment">{{topTweet.text}}</div>
+				
+                                            </p>
+                                            <small class="block text-muted"><i class="fa fa-clock-o"></i> {{topTweet.time}}</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+			
+     		
+
+     		
+
+     	</div>
+     	
+    </div>
+
+
+</div> <!-- /container -->

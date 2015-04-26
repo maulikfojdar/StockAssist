@@ -1,0 +1,29 @@
+<div class="page-header">
+      <h1 class="text-center"><img src="images/logo.png" style="margin-top:100px;" width="500px" height="100px"></h1>
+    </div>
+
+  <div class="container">
+    <div ng-show="error" class="alert alert-danger row">
+      <span>{{ error.message }}</span>
+    </div>
+
+    <form ng-submit="register()"
+      class="form-signin">
+      <h3 class="form-signin-heading text-center">Create your Account</h3>
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        placeholder="Username"
+        ng-model="user.username"></input>
+      </div>
+      <div class="form-group">
+        <input type="password"
+        class="form-control"
+        placeholder="Password"
+        ng-model="user.password"></input>
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+      <hr/>
+      <a class="authLink" ui-sref="login">Have an account?</a>
+    </form>
+    </container>
