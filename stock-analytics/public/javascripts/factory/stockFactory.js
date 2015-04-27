@@ -6,7 +6,8 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
 		sentiment: 0,
 		currentStock: 0,
 		predictedStock: 0,
-		stockSymbol: ""
+		stockSymbol: "",
+    stockTrend:{}
 	};
    	
    	o.getSymbol = function(){
@@ -20,6 +21,7 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
    		o.getSentiment(symbol);
    		o.getPredictedStock(symbol);
    		o.getTopTweets(symbol);
+      o.getStockTrend(symbol);
    	};
 
     o.getSentiment = function(symbol){
@@ -28,6 +30,13 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
         	$rootScope.$broadcast("sentiment");
       	});
     };
+
+    o.getStockTrend = function(symbol){
+      return $http.get("http://54.191.103.141:8800/getStockTrend/"+symbol).success(function(data){
+          o.stockTrend = data;
+          $rootScope.$broadcast("stockTrend");
+        });
+    }
 
     o.getPredictedStock = function(symbol){
         return $http.get("http://54.191.103.141:8800/getPredictedStock/"+symbol).success(function(data){

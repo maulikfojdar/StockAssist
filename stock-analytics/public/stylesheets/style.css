@@ -96,14 +96,15 @@ a {
   color: #00695C;
 }
 
-.panel-primary > ul > li:hover {
-  background-color: #00897B;
+.ibox-content1 > ul > li:hover {
+  background-color: #26A69A;
   color: #fff;
   cursor: pointer;
   font-weight: bold;
 }
 
-.panel-primary > ul > li:hover span.stockSymbol{
+
+.ibox-content1 > ul > li:hover span.stockSymbol{
   color: #fff;
 }
 
@@ -149,12 +150,12 @@ a {
 }
 
 .ibox-title {
-  background-color: #ffffff;
+  background-color: #00897B;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;
   border-width: 4px 0px 0;
-  color: inherit;
+  color: #fff;
   margin-bottom: 0;
   padding: 14px 15px 7px;
   min-height: 48px;
@@ -173,7 +174,7 @@ a {
 .ibox-tools a {
   cursor: pointer;
   margin-left: 5px;
-  color: #c4c4c4;
+  color: #fff;
 }
 
 .ibox-tools {
@@ -184,7 +185,7 @@ a {
   padding: 0;
 }
 
-.ibox-content {
+.ibox-content,.ibox-content1 {
   background-color: #ffffff;
   color: inherit;
   padding: 15px 20px 20px 20px;
@@ -209,4 +210,8 @@ a {
 
 .feed-element:first-child {
   margin-top: 0;
+}
+
+.highcharts-range-selector-buttons{
+  display: none;
 }
