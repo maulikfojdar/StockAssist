@@ -4,6 +4,8 @@ angular.module('StockAnalytics').controller('StockCtrl', [
 'names',
 function($scope,stock,names){
 
+	$scope.flag =1;
+
 	$scope.tweetBox = false;
         $scope.toggleBox = function() {
             $scope.tweetBox = $scope.tweetBox === false ? true: false;
@@ -12,6 +14,7 @@ function($scope,stock,names){
 	$scope.company = "Please select stock quote!!";
 	$scope.$on("stockObj",function(){
 		$scope.symbol = stock.getSymbol();
+		$scope.flag = 0;
 		$scope.company = names.getName($scope.symbol);
 		//console.log($scope.company);
 	});
@@ -22,6 +25,14 @@ function($scope,stock,names){
 		//console.log($scope.topTweets);
 
 	});
+
+	$scope.$on("topTweetsAll",function(){
+		
+		$scope.topTweetsAll = stock.topTweetsAll;
+		console.log($scope.topTweetsAll);
+
+	});
+
 
 	$scope.$on("stockTrend",function(){
 		

@@ -3,6 +3,7 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
 	var o = {
 		allTweets:[],
 		topTweets:[],
+    topTweetsAll:[],
 		sentiment: 0,
 		currentStock: 0,
 		predictedStock: 0,
@@ -21,6 +22,7 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
    		o.getSentiment(symbol);
    		o.getPredictedStock(symbol);
    		o.getTopTweets(symbol);
+      
       o.getStockTrend(symbol);
    	};
 
@@ -53,12 +55,14 @@ angular.module('StockAnalytics').factory('stock',['$http','$rootScope',function(
       	});
     };
 
-    /*o.getAllTweets = function(symbol){
-      	return $http.get("http://54.191.103.141:8800/getAllTweets/"+symbol).success(function(data){
-          	o.allTweets = data;
-          	$rootScope.$broadcast("allTweets");
-      	});
-    };*/
+    o.getTopTweetsAll = function(){
+        return $http.get("http://54.191.103.141:8800/getTopTweets").success(function(data){
+            o.topTweetsAll = data;
+            $rootScope.$broadcast("topTweetsAll");
+        });
+    };
+
+    
 
     return o;
 }]);

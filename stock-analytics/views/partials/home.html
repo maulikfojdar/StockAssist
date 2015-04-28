@@ -30,7 +30,34 @@
 				</div>
      	</div>
 		<div ng-controller="StockCtrl">
-		<div ng-hide="sentiment">Please select a stock to display the data !!!</div>
+		<div ng-hide="flag == 0" class="col-md-10">
+			<div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>Trending Tweets</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i ng-click="toggleBox()" ng-hide="tweetBox" class="fa fa-chevron-up"></i>
+                                            <i ng-click="toggleBox()" ng-show="tweetBox" class="fa fa-chevron-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content no-padding" ng-hide="tweetBox">
+                                    <ul class="list-group" ng-repeat="topTweetAll in topTweetsAll | limitTo: 20">
+                                        <li class="list-group-item">
+                                            <p>
+                                            <a class="text-info" target="_blank" ng-href="https://twitter.com/{{topTweetAll.screen_name}}">
+                                            	@{{topTweetAll.screen_name}}
+                                            </a> 
+                                            <div ng-show="topTweetAll.sentiment == 'positive'" class="posSentiment">{{topTweetAll.text}}</div>
+     										<div ng-show="topTweetAll.sentiment == 'negative'" class="negSentiment">{{topTweetAll.text}}</div>
+				
+                                            </p>
+                                            <small class="block text-muted"><i class="fa fa-clock-o"></i> {{topTweetAll.time}}</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+		</div>
      	<div ng-show="sentiment" class="col-md-6">
      	<h1 style="font-weight:bold;"><i class="fa fa-building "></i> {{company}}</h1>
 			<div class="row">

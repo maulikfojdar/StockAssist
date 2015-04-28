@@ -11,6 +11,8 @@ angular.module('StockAnalytics').controller("SideCtrl",[
     $scope.isLoggedIn = auth.isLoggedIn;
      $scope.stockList = names.names;
     $scope.username = auth.currentUser();
+    stock.getTopTweetsAll();
+    
       
      $scope.stockInfo = function(index){
         var symbol = names.names[index].symbol.substring(1);

@@ -215,3 +215,12 @@ a {
 .highcharts-range-selector-buttons{
   display: none;
 }
+
+.btn-primary, .btn-primary:hover, .btn-primary:active{
+  background-color: #00695C;
+}
+
+.alert .alert-danger .row{
+  width: 50%;
+  margin: 0 auto;
+}
